@@ -1,0 +1,72 @@
+﻿
+@model IEnumerable<Product>
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+	<div class="carousel-indicators">
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	</div>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img src="/images/banner2,.jpg" class="d-block w-100" alt="...">
+		</div>
+		<div class="carousel-item">
+			<img src="/images/banner3..jpg" class="d-block w-100" alt="...">
+		</div>
+		<div class="carousel-item">
+			<img src="/images/banner4.jpg" class="d-block w-100" alt="...">
+		</div>
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<h1 class="text-center">Tüm Ürünler</h1>
+<div class="row pb-3">
+	@foreach (var product in Model)
+	{
+		<div class="col-lg-3 col-sm-6 mb-4">
+			<div class="row p-2">
+				<div class="col-12 p-1">
+					<div class="card border-0 p-3 shadow border-top border-5 rounded ">
+						@if (product.ProductImages != null && product.ProductImages.Count() > 0)
+						{
+							<img src="@product.ProductImages.FirstOrDefault().ImageUrl" class="card-img-top rounded" />
+						}
+						else
+						{
+							<img src="https://placehold.co/500x600/png" class="card-img-top rounded"/>
+						}
+						<div class="lower-content">
+							<a asp-action="Details">@product.Title</a><br/>
+							<span class="price">@product.Price.ToString("C")</span>
+
+						</div>
+						<a asp-action="Details"
+						   asp-route-id="@product.Id"
+						   class="btn btn-primary bg-gradient border-0 form-control">Satın Al</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	}
+
+
+
+	
+
+
+</div>
+
